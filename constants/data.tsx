@@ -23,4 +23,6 @@ export const dataArray: GameObject[] = [
   { id: 15, name: "h2", hidden: true },
   { id: 16, name: "i1", hidden: true },
   { id: 17, name: "i2", hidden: true },
+  { id: 18, name: "j1", hidden: true },
+  { id: 19, name: "j2", hidden: true },
 ];

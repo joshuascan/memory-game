@@ -18,12 +18,17 @@ interface Scoreboard {
   player2: number;
 }
 
+const initialScores: Scoreboard = {
+  player1: 0,
+  player2: 0,
+};
+
 const Board = () => {
   const [circles, setCircles] = useState<GameObject[]>();
   const [currentPlayer, setCurrentPlayer] = useState<"Player 1" | "Player 2">(
     "Player 1"
   );
-  const [scores, setScores] = useState<Scoreboard>({ player1: 0, player2: 0 });
+  const [scores, setScores] = useState<Scoreboard>(initialScores);
   const [turn, setTurn] = useState<number>(1);
   const [selections, setSelections] = useState<string[]>([]);
   const [winner, setWinner] = useState<Player>(null);
@@ -44,6 +49,13 @@ const Board = () => {
       showCircle(id);
       setTurn((prevState) => prevState + 1);
     }
+  };
+
+  const resetGame = () => {
+    setCircles(shuffle(dataArray));
+    setCurrentPlayer("Player 1");
+    setScores(initialScores);
+    setWinner(null);
   };
 
   useEffect(() => {
@@ -114,6 +126,9 @@ const Board = () => {
           />
         ))}
       </div>
+      <button className="mt-4 p-4 bg-orange-400 rounded-lg" onClick={resetGame}>
+        Reset Game
+      </button>
     </>
   );
 };
