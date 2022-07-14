@@ -47,7 +47,7 @@ const Board = () => {
   };
 
   useEffect(() => {
-    setCircles(dataArray);
+    setCircles(shuffle(dataArray));
   }, []);
 
   useEffect(() => {
@@ -77,6 +77,18 @@ const Board = () => {
     }
   }, [circles, currentPlayer, scores, selections]);
 
+  useEffect(() => {
+    if (circles && scores.player1 + scores.player2 === circles.length / 2) {
+      if (scores.player1 > scores.player2) {
+        setWinner("Player 1");
+      } else if (scores.player2 > scores.player1) {
+        setWinner("Player 2");
+      } else {
+        setWinner("Tie");
+      }
+    }
+  }, [circles, scores.player1, scores.player2]);
+
   return (
     <>
       <h2 className="text-3xl mb-4">{currentPlayer}&apos;s turn</h2>
@@ -85,6 +97,12 @@ const Board = () => {
         <p className="text-xl">Player 1: {scores.player1}</p>
         <p className="text-xl">Player 2: {scores.player2}</p>
       </div>
+      {winner && winner !== "Tie" && (
+        <p className="m-4 text-3xl font-bold italic">{winner} wins!</p>
+      )}
+      {winner && winner === "Tie" && (
+        <p className="m-4 text-3xl font-bold italic">It&apos;s a tie!</p>
+      )}
       <div className="flex flex-wrap w-2/3">
         {circles?.map((circle: GameObject) => (
           <Circle
