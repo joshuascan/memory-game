@@ -1,25 +1,26 @@
-export interface Thing {
+export interface GameObject {
   id: number;
   name: string;
+  hidden: boolean;
 }
 
-export const dataArray: Thing[] = [
-  { id: 0, name: "a1" },
-  { id: 1, name: "a2" },
-  { id: 2, name: "b1" },
-  { id: 3, name: "b2" },
-  { id: 4, name: "c1" },
-  { id: 5, name: "c2" },
-  { id: 6, name: "d1" },
-  { id: 7, name: "d2" },
-  { id: 8, name: "e1" },
-  { id: 9, name: "e2" },
-  { id: 10, name: "f1" },
-  { id: 11, name: "f2" },
-  { id: 12, name: "g1" },
-  { id: 13, name: "g2" },
-  { id: 14, name: "h1" },
-  { id: 15, name: "h2" },
-  { id: 16, name: "i1" },
-  { id: 17, name: "i2" },
+export const dataArray: GameObject[] = [
+  { id: 0, name: "a1", hidden: true },
+  { id: 1, name: "a2", hidden: true },
+  { id: 2, name: "b1", hidden: true },
+  { id: 3, name: "b2", hidden: true },
+  { id: 4, name: "c1", hidden: true },
+  { id: 5, name: "c2", hidden: true },
+  { id: 6, name: "d1", hidden: true },
+  { id: 7, name: "d2", hidden: true },
+  { id: 8, name: "e1", hidden: true },
+  { id: 9, name: "e2", hidden: true },
+  { id: 10, name: "f1", hidden: true },
+  { id: 11, name: "f2", hidden: true },
+  { id: 12, name: "g1", hidden: true },
+  { id: 13, name: "g2", hidden: true },
+  { id: 14, name: "h1", hidden: true },
+  { id: 15, name: "h2", hidden: true },
+  { id: 16, name: "i1", hidden: true },
+  { id: 17, name: "i2", hidden: true },
 ];

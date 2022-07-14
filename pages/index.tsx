@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>
+      <div className="flex items-center flex-col">
         <h1>Memory Game</h1>
         <Board />
       </div>

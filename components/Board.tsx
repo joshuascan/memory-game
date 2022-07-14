@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { dataArray } from "../constants/data";
-import { Thing } from "../constants/data";
+import { GameObject } from "../constants/data";
 import Circle from "./Circle";
 
-const shuffle = (array: Thing[]) => {
+type Player = "Player 1" | "Player 2" | "Tie" | null;
+
+const shuffle = (array: GameObject[]) => {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -12,20 +14,68 @@ const shuffle = (array: Thing[]) => {
 };
 
 const Board = () => {
-  const [circles, setCircles] = useState<Thing[]>([]);
+  const [circles, setCircles] = useState<GameObject[]>();
+  const [currentPlayer, setCurrentPlayer] = useState<"Player 1" | "Player 2">(
+    "Player 1"
+  );
+  const [turn, setTurn] = useState<number>(1);
+  const [selections, setSelections] = useState<string[]>([]);
+  const [winner, setWinner] = useState<Player>(null);
+
+  const showCircle = (id: number) => {
+    const newData = circles?.map((circle) => {
+      if (id === circle.id) {
+        setSelections([...selections, circle.name]);
+        return { ...circle, hidden: false };
+      }
+      return circle;
+    });
+    setCircles(newData);
+  };
+
+  const takeTurn = (id: number) => {
+    if (turn <= 2) {
+      showCircle(id);
+      setTurn((prevState) => prevState + 1);
+    }
+  };
 
   useEffect(() => {
-    setCircles(shuffle(dataArray));
+    setCircles(dataArray);
   }, []);
 
+  useEffect(() => {
+    if (selections.length === 2) {
+      if (selections[0].slice(0, -1) === selections[1].slice(0, -1)) {
+        console.log("match");
+      } else {
+        console.log("no match");
+      }
+
+      const newData = circles?.map((circle) => {
+        if (circle.hidden === false) {
+          return { ...circle, hidden: true };
+        }
+        return circle;
+      });
+
+      setTimeout(() => {
+        setCircles(newData);
+        setTurn(1);
+        setSelections([]);
+      }, 2000);
+    }
+  }, [circles, selections]);
+
   return (
-    <div>
-      {circles.map((circle: Thing) => (
+    <div className="flex flex-wrap w-2/3">
+      {circles?.map((circle: GameObject) => (
         <Circle
           key={circle.id}
           id={circle.id}
           name={circle.name}
-          onClick={() => console.log("click")}
+          hidden={circle.hidden}
+          onClick={() => takeTurn(circle.id)}
         />
       ))}
     </div>
