@@ -41,7 +41,7 @@ const Board = () => {
   };
 
   useEffect(() => {
-    setCircles(dataArray);
+    setCircles(shuffle(dataArray));
   }, []);
 
   useEffect(() => {
@@ -50,17 +50,18 @@ const Board = () => {
         console.log("match");
       } else {
         console.log("no match");
+        const newData = circles?.map((circle) => {
+          if (circle.name === selections[0] || circle.name === selections[1]) {
+            return { ...circle, hidden: true };
+          }
+          return circle;
+        });
+        setTimeout(() => {
+          setCircles(newData);
+        }, 2000);
       }
 
-      const newData = circles?.map((circle) => {
-        if (circle.hidden === false) {
-          return { ...circle, hidden: true };
-        }
-        return circle;
-      });
-
       setTimeout(() => {
-        setCircles(newData);
         setTurn(1);
         setSelections([]);
       }, 2000);
