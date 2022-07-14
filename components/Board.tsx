@@ -58,6 +58,7 @@ const Board = () => {
         });
         setTimeout(() => {
           setCircles(newData);
+          setCurrentPlayer((c) => (c === "Player 1" ? "Player 2" : "Player 1"));
         }, 2000);
       }
 
@@ -69,17 +70,20 @@ const Board = () => {
   }, [circles, selections]);
 
   return (
-    <div className="flex flex-wrap w-2/3">
-      {circles?.map((circle: GameObject) => (
-        <Circle
-          key={circle.id}
-          id={circle.id}
-          name={circle.name}
-          hidden={circle.hidden}
-          onClick={() => takeTurn(circle.id)}
-        />
-      ))}
-    </div>
+    <>
+      <h2 className="text-3xl mb-6">{currentPlayer}&apos;s turn</h2>
+      <div className="flex flex-wrap w-2/3">
+        {circles?.map((circle: GameObject) => (
+          <Circle
+            key={circle.id}
+            id={circle.id}
+            name={circle.name}
+            hidden={circle.hidden}
+            onClick={() => takeTurn(circle.id)}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 

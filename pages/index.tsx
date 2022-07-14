@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="flex items-center flex-col">
-        <h1>Memory Game</h1>
+        <h1 className="text-5xl my-8">Memory Game</h1>
         <Board />
       </div>
     </>
