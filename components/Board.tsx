@@ -13,11 +13,17 @@ const shuffle = (array: GameObject[]) => {
   return array;
 };
 
+interface Scoreboard {
+  player1: number;
+  player2: number;
+}
+
 const Board = () => {
   const [circles, setCircles] = useState<GameObject[]>();
   const [currentPlayer, setCurrentPlayer] = useState<"Player 1" | "Player 2">(
     "Player 1"
   );
+  const [scores, setScores] = useState<Scoreboard>({ player1: 0, player2: 0 });
   const [turn, setTurn] = useState<number>(1);
   const [selections, setSelections] = useState<string[]>([]);
   const [winner, setWinner] = useState<Player>(null);
@@ -41,15 +47,20 @@ const Board = () => {
   };
 
   useEffect(() => {
-    setCircles(shuffle(dataArray));
+    setCircles(dataArray);
   }, []);
 
   useEffect(() => {
     if (selections.length === 2) {
       if (selections[0].slice(0, -1) === selections[1].slice(0, -1)) {
-        console.log("match");
+        if (currentPlayer === "Player 1") {
+          setScores({ ...scores, player1: scores.player1 + 1 });
+        } else {
+          setScores({ ...scores, player2: scores.player2 + 1 });
+        }
+        setTurn(1);
+        setSelections([]);
       } else {
-        console.log("no match");
         const newData = circles?.map((circle) => {
           if (circle.name === selections[0] || circle.name === selections[1]) {
             return { ...circle, hidden: true };
@@ -59,19 +70,21 @@ const Board = () => {
         setTimeout(() => {
           setCircles(newData);
           setCurrentPlayer((c) => (c === "Player 1" ? "Player 2" : "Player 1"));
+          setTurn(1);
+          setSelections([]);
         }, 2000);
       }
-
-      setTimeout(() => {
-        setTurn(1);
-        setSelections([]);
-      }, 2000);
     }
-  }, [circles, selections]);
+  }, [circles, currentPlayer, scores, selections]);
 
   return (
     <>
-      <h2 className="text-3xl mb-6">{currentPlayer}&apos;s turn</h2>
+      <h2 className="text-3xl mb-4">{currentPlayer}&apos;s turn</h2>
+      <h3 className="text-2xl">Scoreboard</h3>
+      <div>
+        <p className="text-xl">Player 1: {scores.player1}</p>
+        <p className="text-xl">Player 2: {scores.player2}</p>
+      </div>
       <div className="flex flex-wrap w-2/3">
         {circles?.map((circle: GameObject) => (
           <Circle
