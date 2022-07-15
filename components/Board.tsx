@@ -115,12 +115,13 @@ const Board = () => {
       {winner && winner === "Tie" && (
         <p className="m-4 text-3xl font-bold italic">It&apos;s a tie!</p>
       )}
-      <div className="flex flex-wrap justify-center w-2/3">
+      <div className="my-8 flex flex-wrap justify-center w-[1000px]">
         {circles?.map((circle: GameObject) => (
           <Circle
             key={circle.id}
             id={circle.id}
             name={circle.name}
+            image={circle.image}
             hidden={circle.hidden}
             onClick={() => takeTurn(circle.id)}
           />

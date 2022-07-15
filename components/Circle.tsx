@@ -1,26 +1,37 @@
+import Image from "next/image";
+
 const Circle = ({
   id,
   name,
+  image,
   hidden,
   onClick,
 }: {
   id: number;
   name: string;
+  image: string;
   hidden: boolean;
   onClick: () => void;
 }) => {
   return (
     <div
       onClick={onClick}
-      className="bg-blue-500 border-black rounded-full m-4 cursor-pointer"
+      className={`relative w-32 m-4 cursor-pointer h-32 flex justify-center items-center rounded-full bg-white`}
     >
+      <Image
+        className="rounded-full"
+        src={image}
+        alt={name}
+        width={250}
+        height={250}
+        objectFit="cover"
+        objectPosition="100% 100%"
+      />
       <div
-        className={`p-4 w-20 h-20 flex justify-center items-center rounded-full bg-red-300 ${
-          hidden === true ? "invisible" : "visible"
+        className={`absolute w-32 h-32 bg-blue-500 rounded-full cursor-pointer ${
+          hidden === true ? "visible" : "invisible"
         }`}
-      >
-        <p>{name}</p>
-      </div>
+      />
     </div>
   );
 };
