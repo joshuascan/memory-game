@@ -115,7 +115,7 @@ const Board = () => {
       {winner && winner === "Tie" && (
         <p className="m-4 text-3xl font-bold italic">It&apos;s a tie!</p>
       )}
-      <div className="flex flex-wrap w-2/3">
+      <div className="flex flex-wrap justify-center w-2/3">
         {circles?.map((circle: GameObject) => (
           <Circle
             key={circle.id}

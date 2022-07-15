@@ -15,7 +15,7 @@ const Circle = ({
       className="bg-blue-500 border-black rounded-full m-4 cursor-pointer"
     >
       <div
-        className={`p-4 w-20 h-20 rounded-full bg-red-300 ${
+        className={`p-4 w-20 h-20 flex justify-center items-center rounded-full bg-red-300 ${
           hidden === true ? "invisible" : "visible"
         }`}
       >
