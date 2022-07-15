@@ -12,7 +12,7 @@ const Circle = ({
   return (
     <div
       onClick={onClick}
-      className="bg-blue-500 border-black rounded-full m-4"
+      className="bg-blue-500 border-black rounded-full m-4 cursor-pointer"
     >
       <div
         className={`p-4 w-20 h-20 rounded-full bg-red-300 ${
