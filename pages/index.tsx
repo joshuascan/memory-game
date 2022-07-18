@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex items-center flex-col">
+      <div className="flex items-center flex-col mb-12">
         <h1 className="text-5xl my-8">Memory Game</h1>
         {numberOfPlayers === null ? (
           <PlayerSelection setNumberOfPlayers={setNumberOfPlayers} />

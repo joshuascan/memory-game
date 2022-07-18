@@ -29,7 +29,7 @@ const Circle = ({
       />
       <div
         className={`absolute w-32 h-32 bg-blue-500 rounded-full cursor-pointer ${
-          hidden === true ? "invisible" : "invisible"
+          hidden === true ? "visible" : "invisible"
         }`}
       />
     </div>
