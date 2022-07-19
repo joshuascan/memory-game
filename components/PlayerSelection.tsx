@@ -79,9 +79,10 @@ const PlayerSelection = ({
         <>
           <div className="flex flex-col items-center">
             {playerNames.map((player, index) => (
-              <div key={index}>
-                <label>Player {index + 1}:</label>
+              <div className="flex justify-between w-[275px] mb-2" key={index}>
+                <label>Player {index + 1}: </label>
                 <input
+                  className="border-black border-2"
                   type="text"
                   name={`${index}`}
                   value={player}
