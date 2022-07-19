@@ -136,7 +136,6 @@ const Board = ({
         {circles?.map((circle: GameObject) => (
           <Circle
             key={circle.id}
-            id={circle.id}
             name={circle.name}
             image={circle.image}
             hidden={circle.hidden}

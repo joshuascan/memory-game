@@ -1,13 +1,11 @@
 import Image from "next/image";
 
 const Circle = ({
-  id,
   name,
   image,
   hidden,
   onClick,
 }: {
-  id: number;
   name: string;
   image: string;
   hidden: boolean;
@@ -16,7 +14,7 @@ const Circle = ({
   return (
     <div
       onClick={onClick}
-      className={`relative w-32 m-4 cursor-pointer h-32 flex justify-center items-center rounded-full bg-white`}
+      className="relative w-32 m-4 cursor-pointer h-32 flex justify-center items-center rounded-full bg-white"
     >
       <Image
         className="rounded-full"
