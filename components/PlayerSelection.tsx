@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { PlayerInfo } from "../interfaces";
 
 const PlayerSelection = ({
   setPlayers,
 }: {
-  setPlayers: (arg0: string[]) => void;
+  setPlayers: (arg0: PlayerInfo[]) => void;
 }) => {
   const [playerCount, setPlayerCount] = useState<number>(2);
   const [playerNames, setPlayerNames] = useState<any[]>([]);
@@ -27,7 +28,6 @@ const PlayerSelection = ({
     const updatedArray = [...playerNames];
     updatedArray[Number(e.target.name)] = e.target.value;
     setPlayerNames(updatedArray);
-    console.log(playerNames);
   };
 
   const handleNext = () => {
@@ -40,7 +40,10 @@ const PlayerSelection = ({
   };
 
   const handleSubmit = () => {
-    setPlayers(playerNames);
+    const playerDetails: PlayerInfo[] = playerNames.map((name) => {
+      return { name: name, score: 0 };
+    });
+    setPlayers(playerDetails);
   };
 
   return (

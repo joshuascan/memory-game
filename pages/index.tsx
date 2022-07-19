@@ -3,9 +3,10 @@ import { useState } from "react";
 import Head from "next/head";
 import PlayerSelection from "../components/PlayerSelection";
 import Board from "../components/Board";
+import { PlayerInfo } from "../interfaces";
 
 const Home: NextPage = () => {
-  const [players, setPlayers] = useState<string[]>([]);
+  const [players, setPlayers] = useState<PlayerInfo[]>([]);
 
   return (
     <>
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
         {players.length === 0 ? (
           <PlayerSelection setPlayers={setPlayers} />
         ) : (
-          <Board />
+          <Board players={players} setPlayers={setPlayers} />
         )}
       </div>
     </>

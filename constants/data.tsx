@@ -1,11 +1,6 @@
-export interface GameObject {
-  id: number;
-  name: string;
-  image: string;
-  hidden: boolean;
-}
+import { GameObject } from "../interfaces";
 
-export const dataArray: GameObject[] = [
+export const GAME_OBJECTS: GameObject[] = [
   { id: 0, name: "Butterfly", image: "/images/butterfly.jpeg", hidden: true },
   { id: 1, name: "Butterfly", image: "/images/butterfly.jpeg", hidden: true },
   { id: 2, name: "Koala", image: "/images/koala.jpeg", hidden: true },
