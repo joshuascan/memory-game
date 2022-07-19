@@ -116,11 +116,10 @@ const Board = ({
 
   return (
     <>
-      <h2 className="text-3xl mb-4">{currentPlayer}&apos;s turn</h2>
-      <h3 className="text-2xl">Scoreboard</h3>
+      <h2 className="text-3xl italic mb-4">{currentPlayer}&apos;s turn</h2>
       <div>
         {players.map((player) => (
-          <p key={player.name} className="text-xl">
+          <p key={player.name} className="text-2xl text-center">
             {player.name}: {player.score}
           </p>
         ))}
