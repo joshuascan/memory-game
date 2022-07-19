@@ -5,8 +5,7 @@ import PlayerSelection from "../components/PlayerSelection";
 import Board from "../components/Board";
 
 const Home: NextPage = () => {
-  const [numberOfPlayers, setNumberOfPlayers] = useState<number | null>(null);
-  const [playerNames, setPlayerNames] = useState([]);
+  const [players, setPlayers] = useState<string[]>([]);
 
   return (
     <>
@@ -18,8 +17,8 @@ const Home: NextPage = () => {
 
       <div className="flex items-center flex-col mb-12">
         <h1 className="text-5xl my-8">Memory Game</h1>
-        {numberOfPlayers === null ? (
-          <PlayerSelection setNumberOfPlayers={setNumberOfPlayers} />
+        {players.length === 0 ? (
+          <PlayerSelection setPlayers={setPlayers} />
         ) : (
           <Board />
         )}
