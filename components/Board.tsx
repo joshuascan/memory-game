@@ -21,7 +21,7 @@ const Board = ({
   const [circles, setCircles] = useState<GameObject[]>();
   const [currentPlayer, setCurrentPlayer] = useState(players[0].name);
   const [totalScore, setTotalScore] = useState(0);
-  const [turn, setTurn] = useState<number>(1);
+  const [turn, setTurn] = useState(1);
   const [selections, setSelections] = useState<string[]>([]);
   const [winner, setWinner] = useState<string | null | undefined>(null);
 
@@ -116,7 +116,9 @@ const Board = ({
 
   return (
     <>
-      <h2 className="text-3xl italic mb-4">{currentPlayer}&apos;s turn</h2>
+      <h2 className="text-3xl text-green-700 italic mb-4">
+        {currentPlayer}&apos;s turn
+      </h2>
       <div>
         {players.map((player) => (
           <p key={player.name} className="text-2xl text-center">
@@ -130,7 +132,7 @@ const Board = ({
       {winner && winner === "Tie" && (
         <p className="m-4 text-3xl font-bold italic">It&apos;s a tie!</p>
       )}
-      <div className="my-8 flex flex-wrap justify-center w-[1000px]">
+      <div className="border-4 border-gray-300 my-8 flex flex-wrap justify-center w-[1000px]">
         {circles?.map((circle: GameObject) => (
           <Circle
             key={circle.id}

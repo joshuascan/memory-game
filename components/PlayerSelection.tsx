@@ -7,7 +7,7 @@ const PlayerSelection = ({
   setPlayers: (arg0: PlayerInfo[]) => void;
 }) => {
   const [playerCount, setPlayerCount] = useState<number>(2);
-  const [playerNames, setPlayerNames] = useState<any[]>([]);
+  const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [currentWindow, setCurrentWindow] = useState<
     "Player Count" | "Player Names"
   >("Player Count");
@@ -50,7 +50,8 @@ const PlayerSelection = ({
     <>
       {currentWindow === "Player Count" && (
         <>
-          <div className="flex items-center">
+          <h2 className="text-3xl italic mt-8">Select Number of Players</h2>
+          <div className="flex items-center mt-8">
             <button
               className="h-16 w-16 rounded-full bg-gray-200 text-2xl font-bold disabled:bg-gray-100"
               disabled={playerCount === 2}
@@ -68,7 +69,7 @@ const PlayerSelection = ({
             </button>
           </div>
           <button
-            className="mt-8 py-4 px-8 text-2xl bg-blue-500 rounded-lg"
+            className="mt-10 py-2 px-6 text-2xl bg-blue-500 rounded-lg"
             onClick={handleNext}
           >
             Next
@@ -77,12 +78,16 @@ const PlayerSelection = ({
       )}
       {currentWindow === "Player Names" && (
         <>
-          <div className="flex flex-col items-center">
+          <h2 className="text-3xl italic mt-8">Enter Player Names</h2>
+          <div className="flex flex-col items-center mt-8 mb-4">
             {playerNames.map((player, index) => (
-              <div className="flex justify-between w-[275px] mb-2" key={index}>
-                <label>Player {index + 1}: </label>
+              <div
+                className="flex justify-between items-center w-[275px] mb-2"
+                key={index}
+              >
+                <label className="text-xl">Player {index + 1}: </label>
                 <input
-                  className="border-black border-2"
+                  className="border-gray-200 border-2 p-1 outline-none rounded-md"
                   type="text"
                   name={`${index}`}
                   value={player}
@@ -93,13 +98,13 @@ const PlayerSelection = ({
           </div>
           <div className="flex">
             <button
-              className="mt-8 mx-4 py-4 px-8 text-2xl bg-blue-500 rounded-lg"
+              className="mt-6 mx-4 py-2 px-6 text-2xl bg-blue-500 rounded-lg"
               onClick={handleBack}
             >
               Back
             </button>
             <button
-              className="mt-8 mx-4 py-4 px-8 text-2xl bg-blue-500 rounded-lg"
+              className="mt-6 mx-4 py-2 px-6 text-2xl bg-orange-400 rounded-lg"
               onClick={handleSubmit}
             >
               Submit
