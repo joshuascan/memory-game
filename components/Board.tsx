@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { dataArray } from "../constants/data";
-import { GameObject } from "../constants/data";
+import { GAME_OBJECTS } from "../constants/data";
+import { GameObject, PlayerInfo } from "../interfaces";
 import Circle from "./Circle";
-
-type Player = "Player 1" | "Player 2" | "Tie" | null;
 
 const shuffle = (array: GameObject[]) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -13,25 +11,19 @@ const shuffle = (array: GameObject[]) => {
   return array;
 };
 
-interface Scoreboard {
-  player1: number;
-  player2: number;
-}
-
-const initialScores: Scoreboard = {
-  player1: 0,
-  player2: 0,
-};
-
-const Board = () => {
+const Board = ({
+  players,
+  setPlayers,
+}: {
+  players: PlayerInfo[];
+  setPlayers: (arg0: PlayerInfo[]) => void;
+}) => {
   const [circles, setCircles] = useState<GameObject[]>();
-  const [currentPlayer, setCurrentPlayer] = useState<"Player 1" | "Player 2">(
-    "Player 1"
-  );
-  const [scores, setScores] = useState<Scoreboard>(initialScores);
+  const [currentPlayer, setCurrentPlayer] = useState(players[0].name);
+  const [totalScore, setTotalScore] = useState(0);
   const [turn, setTurn] = useState<number>(1);
   const [selections, setSelections] = useState<string[]>([]);
-  const [winner, setWinner] = useState<Player>(null);
+  const [winner, setWinner] = useState<string | null | undefined>(null);
 
   const showCircle = (id: number) => {
     const newData = circles?.map((circle) => {
@@ -52,24 +44,31 @@ const Board = () => {
   };
 
   const resetGame = () => {
-    setCircles(shuffle(dataArray));
-    setCurrentPlayer("Player 1");
-    setScores(initialScores);
+    setCircles(shuffle(GAME_OBJECTS));
+    setCurrentPlayer(players[0].name);
+    const resetPlayers: PlayerInfo[] = players.map((player) => {
+      return { name: player.name, score: 0 };
+    });
+    setPlayers(resetPlayers);
     setWinner(null);
+    setTotalScore(0);
   };
 
   useEffect(() => {
-    setCircles(shuffle(dataArray));
+    setCircles(shuffle(GAME_OBJECTS));
   }, []);
 
   useEffect(() => {
     if (selections.length === 2) {
-      if (selections[0].slice(0, -1) === selections[1].slice(0, -1)) {
-        if (currentPlayer === "Player 1") {
-          setScores({ ...scores, player1: scores.player1 + 1 });
-        } else {
-          setScores({ ...scores, player2: scores.player2 + 1 });
-        }
+      if (selections[0] === selections[1]) {
+        const updatedScore: PlayerInfo[] = players.map((player) => {
+          if (currentPlayer === player.name) {
+            return { name: player.name, score: player.score + 1 };
+          }
+          return player;
+        });
+        setPlayers(updatedScore);
+        setTotalScore(totalScore + 1);
         setTurn(1);
         setSelections([]);
       } else {
@@ -81,33 +80,49 @@ const Board = () => {
         });
         setTimeout(() => {
           setCircles(newData);
-          setCurrentPlayer((c) => (c === "Player 1" ? "Player 2" : "Player 1"));
+          const currentPlayerIndex = players.findIndex((player) => {
+            return player.name === currentPlayer;
+          });
+          setCurrentPlayer(
+            currentPlayerIndex < players.length - 1
+              ? players[currentPlayerIndex + 1].name
+              : players[0].name
+          );
           setTurn(1);
           setSelections([]);
         }, 2000);
       }
     }
-  }, [circles, currentPlayer, scores, selections]);
+  }, [circles, currentPlayer, players, selections, setPlayers, totalScore]);
 
   useEffect(() => {
-    if (circles && scores.player1 + scores.player2 === circles.length / 2) {
-      if (scores.player1 > scores.player2) {
-        setWinner("Player 1");
-      } else if (scores.player2 > scores.player1) {
-        setWinner("Player 2");
-      } else {
-        setWinner("Tie");
+    if (circles && totalScore === circles.length / 2) {
+      let winner;
+      for (let i = 0; i < players.length; i++) {
+        if (i === 0) {
+          winner = players[i].name;
+        }
+        if (i > 0) {
+          if (players[i].score > players[i - 1].score) {
+            winner = players[i].name;
+          } else if (players[i].score === players[i - 1].score) {
+            winner = "Tie";
+          }
+        }
       }
+      setWinner(winner);
     }
-  }, [circles, scores.player1, scores.player2]);
+  }, [circles, players, totalScore]);
 
   return (
     <>
-      <h2 className="text-3xl mb-4">{currentPlayer}&apos;s turn</h2>
-      <h3 className="text-2xl">Scoreboard</h3>
+      <h2 className="text-3xl italic mb-4">{currentPlayer}&apos;s turn</h2>
       <div>
-        <p className="text-xl">Player 1: {scores.player1}</p>
-        <p className="text-xl">Player 2: {scores.player2}</p>
+        {players.map((player) => (
+          <p key={player.name} className="text-2xl text-center">
+            {player.name}: {player.score}
+          </p>
+        ))}
       </div>
       {winner && winner !== "Tie" && (
         <p className="m-4 text-3xl font-bold italic">{winner} wins!</p>
