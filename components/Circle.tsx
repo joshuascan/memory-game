@@ -1,25 +1,16 @@
 import Image from "next/image";
+import { CircleProps } from "../interfaces";
 
-const Circle = ({
-  name,
-  image,
-  hidden,
-  onClick,
-}: {
-  name: string;
-  image: string;
-  hidden: boolean;
-  onClick: () => void;
-}) => {
+const Circle = (circle: CircleProps) => {
   return (
     <div
-      onClick={onClick}
+      onClick={circle.onClick}
       className="relative w-32 m-4 cursor-pointer h-32 flex justify-center items-center rounded-full bg-white"
     >
       <Image
         className="rounded-full"
-        src={image}
-        alt={name}
+        src={circle.image}
+        alt={circle.name}
         width={250}
         height={250}
         objectFit="cover"
@@ -27,7 +18,7 @@ const Circle = ({
       />
       <div
         className={`absolute w-32 h-32 bg-blue-500 rounded-full cursor-pointer ${
-          hidden === true ? "visible" : "invisible"
+          circle.hidden === true ? "visible" : "invisible"
         }`}
       />
     </div>

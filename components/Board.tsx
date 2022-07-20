@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GAME_OBJECTS } from "../constants/data";
-import { GameObject, PlayerInfo } from "../interfaces";
+import { BoardProps, GameObject, PlayerInfo } from "../interfaces";
 import Circle from "./Circle";
 
 const shuffle = (array: GameObject[]) => {
@@ -11,13 +11,7 @@ const shuffle = (array: GameObject[]) => {
   return array;
 };
 
-const Board = ({
-  players,
-  setPlayers,
-}: {
-  players: PlayerInfo[];
-  setPlayers: (arg0: PlayerInfo[]) => void;
-}) => {
+const Board = ({ players, setPlayers }: BoardProps) => {
   const [circles, setCircles] = useState<GameObject[]>();
   const [currentPlayer, setCurrentPlayer] = useState(players[0].name);
   const [totalScore, setTotalScore] = useState(0);

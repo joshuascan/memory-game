@@ -1,11 +1,7 @@
 import { useState } from "react";
-import { PlayerInfo } from "../interfaces";
+import { PlayerSelectionProps, PlayerInfo } from "../interfaces";
 
-const PlayerSelection = ({
-  setPlayers,
-}: {
-  setPlayers: (arg0: PlayerInfo[]) => void;
-}) => {
+const PlayerSelection = ({ setPlayers }: PlayerSelectionProps) => {
   const [playerCount, setPlayerCount] = useState<number>(2);
   const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [currentWindow, setCurrentWindow] = useState<

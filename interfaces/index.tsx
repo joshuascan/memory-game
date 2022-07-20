@@ -9,3 +9,19 @@ export interface GameObject {
   image: string;
   hidden: boolean;
 }
+
+export interface PlayerSelectionProps {
+  setPlayers: (arg0: PlayerInfo[]) => void;
+}
+
+export interface BoardProps {
+  players: PlayerInfo[];
+  setPlayers: (arg0: PlayerInfo[]) => void;
+}
+
+export interface CircleProps {
+  name: string;
+  image: string;
+  hidden: boolean;
+  onClick: () => void;
+}
