@@ -47,17 +47,17 @@ const PlayerSelection = ({ setPlayers }: PlayerSelectionProps) => {
       {currentWindow === "Player Count" && (
         <>
           <h2 className="text-3xl italic mt-8">Select Number of Players</h2>
-          <div className="flex items-center mt-8">
+          <div className="flex justify-around items-center mt-8 w-80">
             <button
-              className="h-16 w-16 rounded-full bg-gray-200 text-2xl font-bold disabled:bg-gray-100"
+              className="h-16 w-16 rounded-full bg-gray-200 text-2xl font-bold disabled:bg-gray-100 active:bg-gray-300"
               disabled={playerCount === 2}
               onClick={decrement}
             >
               -
             </button>
-            <p className="mx-10 text-4xl">{playerCount}</p>
+            <p className=" text-4xl">{playerCount}</p>
             <button
-              className="h-16 w-16 rounded-full bg-gray-200 text-2xl font-bold disabled:bg-gray-100"
+              className="h-16 w-16 rounded-full bg-gray-200 text-2xl font-bold disabled:bg-gray-100 active:bg-gray-300"
               disabled={playerCount === 4}
               onClick={increment}
             >
@@ -65,7 +65,7 @@ const PlayerSelection = ({ setPlayers }: PlayerSelectionProps) => {
             </button>
           </div>
           <button
-            className="mt-10 py-2 px-6 text-2xl bg-blue-500 rounded-lg"
+            className="mt-10 py-2 px-6 text-2xl bg-blue-500 active:bg-blue-600 rounded-lg"
             onClick={handleNext}
           >
             Next
@@ -94,13 +94,13 @@ const PlayerSelection = ({ setPlayers }: PlayerSelectionProps) => {
           </div>
           <div className="flex">
             <button
-              className="mt-6 mx-4 py-2 px-6 text-2xl bg-blue-500 rounded-lg"
+              className="mt-6 mx-4 py-2 px-6 text-2xl bg-blue-500 active:bg-blue-600 rounded-lg"
               onClick={handleBack}
             >
               Back
             </button>
             <button
-              className="mt-6 mx-4 py-2 px-6 text-2xl bg-orange-400 rounded-lg"
+              className="mt-6 mx-4 py-2 px-6 text-2xl bg-orange-400 active:bg-orange-500 rounded-lg"
               onClick={handleSubmit}
             >
               Submit
