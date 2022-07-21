@@ -65,7 +65,7 @@ const PlayerSelection = ({ setPlayers }: PlayerSelectionProps) => {
             </button>
           </div>
           <button
-            className="mt-10 py-2 px-6 text-2xl bg-blue-500 active:bg-blue-600 rounded-lg"
+            className="mt-10 py-2 px-6 text-2xl text-white bg-blue-500 active:bg-blue-600 rounded-lg"
             onClick={handleNext}
           >
             Next
@@ -94,13 +94,13 @@ const PlayerSelection = ({ setPlayers }: PlayerSelectionProps) => {
           </div>
           <div className="flex">
             <button
-              className="mt-6 mx-4 py-2 px-6 text-2xl bg-blue-500 active:bg-blue-600 rounded-lg"
+              className="mt-6 mx-4 py-2 px-6 text-2xl text-white bg-blue-500 active:bg-blue-600 rounded-lg"
               onClick={handleBack}
             >
               Back
             </button>
             <button
-              className="mt-6 mx-4 py-2 px-6 text-2xl bg-orange-400 active:bg-orange-500 rounded-lg"
+              className="mt-6 mx-4 py-2 px-6 text-2xl text-white bg-orange-400 active:bg-orange-500 rounded-lg"
               onClick={handleSubmit}
             >
               Submit
