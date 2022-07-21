@@ -138,7 +138,7 @@ const Board = ({ players, setPlayers }: BoardProps) => {
         ))}
       </div>
       <button
-        className="my-4 p-4 bg-orange-400 text-white rounded-lg"
+        className="my-4 p-4 bg-orange-400 active:bg-orange-500 text-white rounded-lg"
         onClick={resetGame}
       >
         Reset Game

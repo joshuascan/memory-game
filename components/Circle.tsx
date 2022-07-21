@@ -17,7 +17,7 @@ const Circle = (circle: CircleProps) => {
         objectPosition="100% 100%"
       />
       <div
-        className={`absolute w-32 h-32 bg-blue-500 rounded-full cursor-pointer ${
+        className={`absolute w-32 h-32 bg-blue-500 active:bg-blue-600 rounded-full cursor-pointer ${
           circle.hidden === true ? "visible" : "invisible"
         }`}
       />
