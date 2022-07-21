@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import Head from "next/head";
 import PlayerSelection from "../components/PlayerSelection";
+import InstructionsModal from "../components/InstructionsModal";
 import Board from "../components/Board";
 import { PlayerInfo } from "../interfaces";
 
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
 
       <div className="flex items-center flex-col mb-12">
         <h1 className="text-5xl my-8">Memory Game</h1>
+        <InstructionsModal />
         {players.length === 0 ? (
           <PlayerSelection setPlayers={setPlayers} />
         ) : (

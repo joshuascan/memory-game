@@ -25,3 +25,8 @@ export interface CircleProps {
   hidden: boolean;
   onClick: () => void;
 }
+
+export interface ModalProps {
+  showModal: boolean;
+  setShowModal: (arg0: boolean) => void;
+}
