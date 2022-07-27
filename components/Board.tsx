@@ -110,7 +110,7 @@ const Board = ({ players, setPlayers }: BoardProps) => {
 
   return (
     <>
-      <h2 className="text-3xl text-green-700 italic mb-4">
+      <h2 className="text-3xl text-rose-700 font-bold italic mb-4">
         {currentPlayer}&apos;s turn
       </h2>
       <div>

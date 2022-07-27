@@ -22,7 +22,7 @@ const InstructionsModal = () => {
   return (
     <>
       <button
-        className="bg-red-600 text-white active:bg-red-700 text-xl py-2 px-6 mb-8 rounded-lg"
+        className="bg-amber-400 text-white active:bg-amber-500 text-xl py-2 px-6 mb-8 rounded-lg"
         type="button"
         onClick={openModal}
       >
