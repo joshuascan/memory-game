@@ -1,6 +1,6 @@
 ## Memory Game
 
-Built using Typescript, Next.js, and Styled Components.
+Built using Typescript, Next.js, and Tailwind CSS.
 
 The deployed site can be found [here](https://memory-game-eight-eta.vercel.app/).
 
